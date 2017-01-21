@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 3583ac868d00b6b48a318094af725d43
 timeCreated: 1485013876
+=======
+guid: b34fe14a48bcb944b8b9873658c4cbec
+timeCreated: 1485016581
+>>>>>>> Branch_apple
 licenseType: Free
 ModelImporter:
   serializedVersion: 19

@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: e23fb2ac78191064aa99fc556f302246
 timeCreated: 1485013872
+=======
+guid: a321a3d3d988c9f45ba1c9229994e1cf
+timeCreated: 1485016580
+>>>>>>> Branch_apple
 licenseType: Free
 NativeFormatImporter:
   userData: 
