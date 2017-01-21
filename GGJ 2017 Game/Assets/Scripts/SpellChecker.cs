@@ -5,6 +5,9 @@ using UnityEngine;
 public class SpellChecker : MonoBehaviour {
 
 	public GameObject FrontSpellChecker;
+	public GameObject ProjectilePrefab;
+
+	public GameObject forearmObj;
 
 	public bool spellDone = false;
 
@@ -18,15 +21,11 @@ public class SpellChecker : MonoBehaviour {
 		
 	}
 
-	void OnTriggerStay(Collider other)
+	void OnTriggerEnter(Collider other)
 	{
 		if (other.gameObject.Equals(FrontSpellChecker))
 		{
-			if (!spellDone)
-			{
-				Debug.Log("Touching the " + other.name);
-				spellDone = true;
-			}
+			Instantiate(ProjectilePrefab, forearmObj.transform.position, forearmObj.transform.rotation);
 		}
 	}
 
