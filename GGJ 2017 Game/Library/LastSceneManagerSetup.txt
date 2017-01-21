@@ -1,8 +1,4 @@
 sceneSetups:
-<<<<<<< HEAD
 - path: Assets/Scenes/level_1.unity
-=======
-- path: Assets/Scenes/LevelDesign.unity
->>>>>>> Branch_apple
   isLoaded: 1
   isActive: 1
