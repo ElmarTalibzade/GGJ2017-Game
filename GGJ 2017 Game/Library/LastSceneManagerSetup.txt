@@ -1,12 +1,4 @@
 sceneSetups:
-<<<<<<< HEAD
-<<<<<<< HEAD
-- path: Assets/Scenes/LevelDesign.unity
-=======
 - path: Assets/Scenes/testproject.unity
->>>>>>> Alice
-=======
-- path: Assets/Scenes/MainMenu.unity
->>>>>>> Branch_Cris
   isLoaded: 1
   isActive: 1
