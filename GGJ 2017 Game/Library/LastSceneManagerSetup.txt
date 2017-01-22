@@ -1,4 +1,8 @@
 sceneSetups:
+<<<<<<< HEAD
 - path: Assets/Scenes/LevelDesign.unity
+=======
+- path: Assets/Scenes/testproject.unity
+>>>>>>> Alice
   isLoaded: 1
   isActive: 1
