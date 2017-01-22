@@ -1,7 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
+guid: ba695e965b82a264ea2b77a798f47ce6
+folderAsset: yes
+timeCreated: 1485013872
+=======
 guid: e05451c94c566cb49bfd5b80500f24df
 folderAsset: yes
 timeCreated: 1485016580
+>>>>>>> Branch_apple
 licenseType: Free
 DefaultImporter:
   userData: 
