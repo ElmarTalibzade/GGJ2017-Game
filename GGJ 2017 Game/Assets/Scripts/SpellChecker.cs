@@ -11,6 +11,9 @@ public class SpellChecker : MonoBehaviour {
 
 	public bool spellDone = false;
 
+	public AudioSource audioSource;
+	public AudioClip[] spell_FireClips;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -26,11 +29,19 @@ public class SpellChecker : MonoBehaviour {
 		if (other.gameObject.Equals(FrontSpellChecker))
 		{
 			Instantiate(ProjectilePrefab, forearmObj.transform.position, forearmObj.transform.rotation);
+			PlayFireSpellSound();
 		}
 	}
 
 	void OnTriggerExit()
 	{
 		spellDone = false;
+	}
+
+	void PlayFireSpellSound()
+	{
+		AudioClip randomClip = spell_FireClips[Random.Range(0, spell_FireClips.Length)];
+
+		audioSource.PlayOneShot(randomClip);
 	}
 }

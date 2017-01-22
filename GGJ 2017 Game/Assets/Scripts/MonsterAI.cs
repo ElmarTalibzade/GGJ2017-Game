@@ -8,29 +8,85 @@ using UnityEngine.AI;
 public class MonsterAI : MonoBehaviour {
 
 	public bool isAlive = true;
+	public bool hasTarget = true;
+	public bool isAttacking = false;
 	public Transform player;
+	public float damageAmount = 10f;
+
+	public float myHealth = 20;
 
 	NavMeshAgent agent;
 	Animator animator;
 
+	public AudioSource audioSource;
+	public AudioClip[] zombieDeathClips;
 	void Start () 
 	{
 		agent = GetComponent<NavMeshAgent>();
 		animator = GetComponent<Animator>();
 	}
 	
+	bool finishedDying = false;
+
 	void Update () 
 	{
+		isAlive = (myHealth > 0);
+
 		if (isAlive)
 		{
-			agent.SetDestination(player.position);
-			
-			animator.SetFloat("speed", agent.velocity.magnitude);
+			hasTarget = player.gameObject.GetComponent<PlayerStatus>().isAlive;
+
+			isAttacking = ((agent.velocity == Vector3.zero) && hasTarget);
+
+			if (hasTarget)
+			{
+				agent.SetDestination(player.position);
+				
+				animator.SetFloat("speed", agent.velocity.magnitude);
+				animator.SetBool("attacking", isAttacking);			
+			}
+			else
+			{
+				agent.Stop();
+			}
+		}
+		else
+		{
+			if (!finishedDying)
+			{
+				GetComponent<CapsuleCollider>().enabled = false;
+				agent.enabled = false;
+				animator.SetBool("isDead", !isAlive);
+				PlayDeathSound();
+				finishedDying = true;
+			}
 		}
 	}
 
 	void OnTriggerEnter(Collider other)
 	{
+		if (isAlive)
+		{
+			if (other.CompareTag("Projectile"))
+			{
+				Destroy(other.gameObject);
+				
+				myHealth -= other.gameObject.GetComponent<ProjectileController>().damage;
+			}
+		}
+	}
 
+	void DealDamage()
+	{
+		player.gameObject.GetComponent<PlayerStatus>().CurrentHealth -= damageAmount;
+	}
+
+	void PlayDeathSound()
+	{
+		if (!audioSource.isPlaying)
+		{
+			AudioClip randomClip = zombieDeathClips[(int)Random.Range(0, zombieDeathClips.Length)];
+			audioSource.PlayOneShot(randomClip);
+		}
 	}
 }
