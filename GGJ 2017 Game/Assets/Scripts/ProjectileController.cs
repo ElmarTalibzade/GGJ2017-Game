@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class ProjectileController : MonoBehaviour
 {
 
-    public float damage = 3.5f;
+    public float damage = 10;
     public float speed = 2.5f;
 
     void Update()
