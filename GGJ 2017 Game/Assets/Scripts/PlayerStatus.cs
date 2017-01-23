@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerStatus : MonoBehaviour {
 
@@ -9,7 +10,8 @@ public class PlayerStatus : MonoBehaviour {
 	public Image healthBar;
 	public float CurrentHealth = 500;
 	public float MaxHealth = 500;
-	
+
+
 	float HealthPercentage;
 
 	void Awake()
@@ -19,11 +21,15 @@ public class PlayerStatus : MonoBehaviour {
 
 	void Update () 
 	{
+
 		HealthPercentage = CurrentHealth/MaxHealth;
 		healthBar.fillAmount = HealthPercentage;
 
 		isAlive = (HealthPercentage > 0);
 
-		Debug.Log(CurrentHealth);
+		if (!isAlive)
+		{
+			SceneManager.LoadScene(0);
+		}
 	}
 }

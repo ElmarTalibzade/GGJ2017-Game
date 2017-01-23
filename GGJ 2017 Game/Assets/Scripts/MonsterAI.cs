@@ -18,12 +18,15 @@ public class MonsterAI : MonoBehaviour {
 	NavMeshAgent agent;
 	Animator animator;
 
+	public float bodyDestroyTime = 5;
+
 	public AudioSource audioSource;
 	public AudioClip[] zombieDeathClips;
-	void Start () 
+	void Awake () 
 	{
 		agent = GetComponent<NavMeshAgent>();
 		animator = GetComponent<Animator>();
+		player = GameObject.FindWithTag("Player").transform;
 	}
 	
 	bool finishedDying = false;
@@ -58,6 +61,8 @@ public class MonsterAI : MonoBehaviour {
 				agent.enabled = false;
 				animator.SetBool("isDead", !isAlive);
 				PlayDeathSound();
+				GameManager.currentScore += 1;
+				StartCoroutine(Disappear());
 				finishedDying = true;
 			}
 		}
@@ -88,5 +93,11 @@ public class MonsterAI : MonoBehaviour {
 			AudioClip randomClip = zombieDeathClips[(int)Random.Range(0, zombieDeathClips.Length)];
 			audioSource.PlayOneShot(randomClip);
 		}
+	}
+
+	IEnumerator Disappear()
+	{
+		yield return new WaitForSeconds(bodyDestroyTime);
+		Destroy(this.gameObject);
 	}
 }

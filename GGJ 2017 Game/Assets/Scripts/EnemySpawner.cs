@@ -8,10 +8,11 @@ public class EnemySpawner : MonoBehaviour {
     public GameObject enemy;
     public float spawnTime;
 
+    public GameObject manager;
+
 	void Start () {
 
         InvokeRepeating("SpawnEnemy", spawnTime, spawnTime);
-
 	}
 
     void SpawnEnemy() {
@@ -21,8 +22,21 @@ public class EnemySpawner : MonoBehaviour {
             return;
         } */
         //else {
+        
+        if (manager.GetComponent<GameManager>().monsters.Count < manager.GetComponent<GameManager>().MonsterLimit)
+        {
+            Instantiate(enemy, transform.position, transform.rotation);
+        }
 
-        Instantiate(enemy, transform.position, transform.rotation);
+        manager.GetComponent<GameManager>().monsters.Clear();
+
+        foreach (GameObject monster in GameObject.FindGameObjectsWithTag("Monster"))
+		{
+			if (monster.GetComponent<MonsterAI>().isAlive)
+			{
+				manager.GetComponent<GameManager>().monsters.Add(monster);
+			}
+		}
         //}
     }
 }
