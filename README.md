@@ -1,6 +1,6 @@
-# Global Game Jam Game 2017
+# Invoker - Global Game Jam Game 2017
 
-A Game we're working on for Global Game Jam 2017 event!
+A Game that was complete during the Global Game Jam 2017.
 
 ##Credits
  * Elmar Talibzade
